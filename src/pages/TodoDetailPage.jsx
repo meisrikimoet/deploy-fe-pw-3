@@ -16,7 +16,7 @@ export default function TodoDetailPage() {
   }, [])
 
   // TODO: buat function untuk fetch detail data
-  async function fecthTodoData(){
+  async function fetchTodoData(){
     try{
       setLoading(true);
 

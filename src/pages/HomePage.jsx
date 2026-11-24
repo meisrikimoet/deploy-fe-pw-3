@@ -8,9 +8,28 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  // TODO: fetch data setiap halaman di-mount ke layar
+  useEffect(() => {
+    fetchTodoData();
+  }, [])
 
-  // TODO: buat function untuk fetch data
+  // TODO: buat function untuk fetch detail data
+  async function fetchTodoData(){
+    try{
+      setLoading(true);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/todos`
+      );
+
+      const todo = await response.json();
+
+      setData(todo.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   function handleDelete(id) {
     setData((prev) => prev.filter((e) => e.id != id));
